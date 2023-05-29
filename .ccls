@@ -1,4 +1,5 @@
-%cpp
+g++
 
 -I
 ./lib/snap7
+./lib/logs
