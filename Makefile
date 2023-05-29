@@ -1,17 +1,19 @@
 CC = g++
+CINCLUDE = -Ilib/snap7
 
 lib/snap7/snap7.o: lib/snap7/snap7.cpp
 	$(CC) -c $< -o $@
 
-snap7server: snap7server.cpp lib/snap7/snap7.o
-	$(CC) snap7server.cpp lib/snap7/snap7.o -o $@ -L/usr/lib -lsnap7
+bin/snap7server: src/snap7server.cpp lib/snap7/snap7.o
+	$(CC) $(CINCLUDE) src/snap7server.cpp lib/snap7/snap7.o -o $@ -L/usr/lib -lsnap7
 
-build: snap7server
+build: bin/snap7server
 
 all:
 	./snap7server
 
 clear:
 	rm */**/*.o
+	rm snap7server
 
 .PHONY: all build clear

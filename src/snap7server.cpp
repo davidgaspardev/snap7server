@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "lib/snap7/snap7.h"
+#include <snap7.h>
 
 typedef unsigned char byte;
 
