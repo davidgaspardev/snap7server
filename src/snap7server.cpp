@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <snap7.h>
+#include <logs.h>
 
 typedef unsigned char byte;
 
@@ -9,23 +10,30 @@ byte DB2 [128];
 byte DB3 [1024];
 byte MB  [2048];
 
-int main() {
-  printf("Snap7 Server\n");
-  
-  int err;
-  server = new TS7Server;
-  
+void setup_memory() {
+  log_info("Setup memories");
+
   server->RegisterArea(srvAreaDB, 1, &DB1, sizeof(DB1));
   server->RegisterArea(srvAreaDB, 2, &DB2, sizeof(DB2));
   server->RegisterArea(srvAreaDB, 3, &DB3, sizeof(DB3));
   server->RegisterArea(srvAreaMK, 0, &MB, sizeof(MB));
+}
+
+int main() {
+  log_info("Snap 7 Server");
+  
+  int err;
+  server = new TS7Server;
+  
+  setup_memory();
   
   err = server->Start();
   if (err == 0) {
-    printf("Online...\n");
+    log_ok("Online ...");
     getchar();
   } else {
-    printf("%s\n", SrvErrorText(err).c_str());
+    log_err("%s", SrvErrorText(err).c_str());
+    return 1;
   }
   
   server->Stop();
