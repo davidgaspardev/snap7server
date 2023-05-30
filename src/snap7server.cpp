@@ -29,7 +29,7 @@ int main() {
   
   err = server->Start();
   if (err == 0) {
-    log_ok("Online ...");
+    log_ok("Online ... [press enter to finish]");
     getchar();
   } else {
     log_err("%s", SrvErrorText(err).c_str());
