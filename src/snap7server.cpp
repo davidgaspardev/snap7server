@@ -5,9 +5,9 @@
 typedef unsigned char byte;
 
 TS7Server* server;
-byte DB1 [512];
-byte DB2 [128];
-byte DB3 [1024];
+byte DB1 [2048];
+byte DB2 [2048];
+byte DB3 [2048];
 byte MB  [2048];
 
 void setup_memory() {
